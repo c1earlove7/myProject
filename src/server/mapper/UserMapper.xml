@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.situ.ssm.mapper.UserMapper">
+	
+	<!-- public List<User> selectAll(); -->
+	<select id="selectAll" resultType="User">
+		SELECT `id`,`name`,`age`,`email`,`password` FROM `user`
+	</select>
+	
+	<select id="selectByPage" resultType="User">
+		SELECT `id`,`name`,`age`,`email`,`password` FROM `user` LIMIT #{offset},#{limit}
+	</select>
+	
+	<select id="selectTotalCount" resultType="Integer">
+		SELECT count(*) FROM `user`
+	</select>
+	
+	<delete id="deleteById" parameterType="Integer">
+		DELETE FROM `user` WHERE `id`=#{id}
+	</delete>
+	
+	<insert id="insert" parameterType="User">
+		INSERT INTO 
+			`user`(`name`,`age`,`password`,`email`,`department_id`) 
+		VALUES
+			(#{name},#{age},#{password},#{email},#{deptId})
+	</insert>
+</mapper>
+  
